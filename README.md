@@ -36,20 +36,33 @@ This is why the weight distributions for "ERC" and "MinVol" are each solved for 
    > - Its **Variance-Covariance Matrix (Omega)**  
    > - The **Weighted Omega Matrix** (calculated as `Omega * Weights`, dynamically adjusted based on the chosen allocation method).
 
-5. ***Portfolio Worksheet***  
-   > Outputs the weights of all inputted assets based on the selected allocation method (selectable via the "DistMeth" dropdown list in the upper-right corner).  
-   > - Calculates portfolio volatility and the Marginal Risk Contribution (%) of each asset.  
-   > - For **ERC** or **MinVol** methods:  
-   > Click the macro button in the upper-left corner of the worksheet to execute the appropriate Python script (`Python_ERC_Solver` or `Python_MinVol_Solver`) for weight distribution calculations.
+5. ***Portfolio Worksheet***
+   > Outputs the weights of all inputted assets based on the selected allocation method (selectable via the "DistMeth" dropdown list in the upper-right corner).
+   > - Calculates portfolio volatility and the Marginal Risk Contribution (%) of each asset.
+   > - For **ERC** or **MinVol** methods:
+   > Click the macro button in the upper-left corner of the worksheet to execute the appropriate solver (`ERC_Solver.exe` or `MinVol_Solver.exe`) for weight distribution calculations.
+
+---
+
+### Installation & Distribution
+
+PAM ships as a self-contained package with **no Python installation required** on the recipient's machine.
+
+**Required files (keep all three in the same folder):**
+- `PORTFOLIO ALLOCATION MODEL.xlsm` — Excel workbook (enable macros when prompted)
+- `ERC_Solver.exe` — Standalone solver for Equal Risk Contribution allocation
+- `MinVol_Solver.exe` — Standalone solver for Minimum Volatility allocation
+
+Just distribute these three files together. The `.exe` files bundle Python and all dependencies internally (~150–250 MB each).
 
 ---
 
 ### Dependencies
-- *Python Scripts*
-  > Ensure Python and the required libraries are installed and configured, along with the 2 python scripts *(check VBA code for directory errors)*.
-  > - `Python_ERC_Solver.py`  
-  > - `Python_MinVol_Solver.py`  
-- *Bloomberg Terminal Functions*
+
+- *Excel*
+  > Microsoft Excel with **macros enabled** when prompted. VBA macros orchestrate the solver calls.
+
+- *Bloomberg Terminal Open*
   > Access to bloomberg is also needed, unless you have another way to input the closing prices of the past 750 working days for every security. If not, the prices and tickers already present on the document serve as a demo.
 - *Excel VBA Macros* (must be enabled) 
   > - To reset or apply α and β values.  
