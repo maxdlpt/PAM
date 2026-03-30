@@ -2,6 +2,7 @@ from __future__ import division
 
 import math
 import os
+import sys
 import xlwings as xw
 import numpy as np
 import pandas as pd
@@ -12,7 +13,11 @@ from colorama import Fore, Style, init
 init(autoreset=True)
 
 # Find Workbook
-current_directory = os.path.dirname(os.path.abspath(__file__))
+# When bundled as a PyInstaller EXE, __file__ doesn't exist — use sys.executable instead
+if getattr(sys, 'frozen', False):
+    current_directory = os.path.dirname(sys.executable)
+else:
+    current_directory = os.path.dirname(os.path.abspath(__file__))
 workbook_filename = "PORTFOLIO ALLOCATION MODEL.xlsm"
 workbook_path = os.path.join(current_directory, workbook_filename)
 wb = xw.Book(workbook_path)
